@@ -1,6 +1,43 @@
 import React, { Component } from "react";
-export default class Form extends Component {
+import axios from "axios";
+import PhotoCard from "../photoItem";
+const baseurl = "https://shrouded-brook-59989.herokuapp.com/api";
+const Id_token = localStorage.getItem("id_token");
+
+const headers = {
+  Authorization: "Bearer " + Id_token
+};
+export default class PhotoList extends Component {
+  state = {
+    photos: []
+  };
+
+  getPhotos() {
+    axios
+      .get(`${baseurl}/photos/Bull%20Island`, {
+        headers: headers
+      })
+      .then(response => {
+        console.log(response);
+        this.setState({ photos: response.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  componentDidMount() {
+    this.getPhotos();
+  }
+
   render() {
-    return <fragment>This will be the Photo List!</fragment>;
+    const photoCards = this.state.photos.map((photo, index) => (
+      <PhotoCard key={index} photo={photo} />
+    ));
+    return (
+      <div>
+        <div>{photoCards}</div>
+      </div>
+    );
   }
 }

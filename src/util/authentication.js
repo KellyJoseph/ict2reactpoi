@@ -37,30 +37,6 @@ class Authentication {
         errorcb();
       });
   }
-  /*
-  authenticate(email, password, cb, errorcb) {
-    axios
-      .post(
-        "https://shrouded-brook-59989.herokuapp.com/api/users/authenticate",
-        {
-          email: email,
-          password: password
-        }
-      )
-      .then(res => {
-        this.isAuthenticated = true;
-        this.token = res.data.token;
-        this.email = email;
-        this.error = undefined;
-        cb();
-      })
-      .catch(err => {
-        this.isAuthenticated = false;
-        this.error = err.response.status;
-        errorcb();
-      });
-  }
-*/
 
   loggedIn() {
     // Checks if there is a saved token and it's still valid

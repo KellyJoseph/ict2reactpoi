@@ -19,6 +19,20 @@ export default class Services {
     }
   }
 
+  getLocations2() {
+    axios
+      .get(`${baseurl}/locations`, {
+        headers: headers
+      })
+      .then(response => {
+        console.log(response);
+        //this.setState({ locations2: response.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   async getPhotos() {
     try {
       const response = await axios.get(`${baseurl}/photos`, {
