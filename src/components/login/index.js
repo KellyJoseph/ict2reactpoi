@@ -5,7 +5,7 @@ import { withRouter, Redirect } from "react-router-dom";
 class Login extends Component {
   state = {
     redirectToReferrer: false,
-    username: "",
+    email: "",
     password: ""
   };
 
@@ -15,11 +15,11 @@ class Login extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    Authentication.authenticate(
-      this.state.username,
+    Authentication.login(
+      this.state.email,
       this.state.password,
       () => {
-        this.setState({ redirectToReferrer: true, username: "", password: "" });
+        this.setState({ redirectToReferrer: true, email: "", password: "" });
       },
       () => {
         this.setState({ redirectToReferrer: false, password: "" });
@@ -37,11 +37,7 @@ class Login extends Component {
     return (
       <div className="row">
         <div className="col-md-4 offset-3">
-          {Authentication.error === 401 ? (
-            <p>Invalid username/password</p>
-          ) : (
-            <p />
-          )}
+          {Authentication.error === 401 ? <p>Invalid email/password</p> : <p />}
           <form style={{ marginTop: "30px" }}>
             <h3>Login</h3>
 
@@ -49,9 +45,9 @@ class Login extends Component {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Username"
-                name="username"
-                value={this.state.username}
+                placeholder="Email"
+                name="email"
+                value={this.state.email}
                 onChange={this.handleChange}
               />
             </div>

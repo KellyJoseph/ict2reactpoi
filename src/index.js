@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Redirect, Switch, Link } from "react-router-dom";
 //import "./index.css";
 import "semantic-ui-css/semantic.min.css";
 import App from "./App";
+import Locations from "./Locations";
+//import Photos from "./Photos";
 import * as serviceWorker from "./serviceWorker";
 import Header from "./components/header/";
 import locationList from "./components/locationList";
@@ -17,9 +19,10 @@ const Router = () => (
       <Header />
       <div className="container-fluid">
         <Switch>
-          <PrivateRoute path="/posts/:post_id" component={locationList} />
+          <PrivateRoute path="/locationList" component={Locations} />
           <Route path="/login" component={LoginForm} />
-          <Route exact path="/locationlist" component={App} />
+          <Route exact path="/" component={App} />
+
           <Route path="/location/:location_id" component={photoList} />
           <Redirect from="*" to="/" />
         </Switch>

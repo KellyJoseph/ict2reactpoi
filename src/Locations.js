@@ -16,7 +16,6 @@ export default class App extends Component {
 
   render() {
     let locations = api.getAll();
-    console.log("viewing app now");
 
     return (
       <div className="jumbotron">
@@ -29,7 +28,7 @@ export default class App extends Component {
           <div className="row">
             <div className="col-md-4 ">Insert form to add location here</div>
             <div className="col-md-8">
-              <h1>Landing Page</h1>
+              <LocationList locations={locations} />
             </div>
           </div>
         </div>
