@@ -8,22 +8,22 @@ export default class Form extends Component {
       <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <NavLink class="nav-item" to="/welcome">
+            <NavLink className="nav-item" to="/welcome">
               Home
             </NavLink>
           </li>
           <li class="nav-item">
-            <NavLink class="nav-item" to="/locations">
+            <NavLink className="nav-item" to="/locations">
               Locations
             </NavLink>
           </li>
           <li class="nav-item">
-            <NavLink class="nav-item" to="/login">
+            <NavLink className="nav-item" to="/login">
               Log In
             </NavLink>
           </li>
           <li class="nav-item">
-            <NavLink class="nav-item" to="/register">
+            <NavLink className="nav-item" to="/register">
               Sign Up
             </NavLink>
           </li>

@@ -17,7 +17,7 @@ class Login extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    Authentication.login(
+    Authentication.register(
       this.state.firstname,
       this.state.lastname,
       this.state.email,
@@ -43,7 +43,7 @@ class Login extends Component {
         <div className="col-md-4 offset-3">
           {Authentication.error === 401 ? <p>Invalid email/password</p> : <p />}
           <form style={{ marginTop: "30px" }}>
-            <h3>Login</h3>
+            <h3>Signup</h3>
 
             <div className="form-group">
               <input

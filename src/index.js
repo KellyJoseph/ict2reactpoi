@@ -21,7 +21,7 @@ const Router = () => (
       <div className="container-fluid">
         <Switch>
           <PrivateRoute path="/locations" component={LocationList} />
-          <PrivateRoute path="/photos/:locationname" component={PhotoList} />
+          <Route path="/photos/:locationname" component={PhotoList} />
           <Route path="/login" component={LoginForm} />
           <Route path="/register" component={RegisterForm} />
           <Route exact path="/" component={Welcome} />

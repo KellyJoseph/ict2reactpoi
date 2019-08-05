@@ -13,6 +13,19 @@ class Authentication {
     this.error = undefined;
   }
 
+  register(firstname, lastname, email, password) {
+    let response = this.fetch(`${this.baseurl}/users`, {
+      method: "POST",
+      body: JSON.stringify({
+        firstName: firstname,
+        lastName: lastname,
+        email: email,
+        password: password
+      })
+    });
+    console.log(response);
+  }
+
   login(email, password, cb, errorcb) {
     // Get a token from api server using the fetch api
     return this.fetch(`${this.baseurl}/users/authenticate`, {

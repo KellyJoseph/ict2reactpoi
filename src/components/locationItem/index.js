@@ -11,7 +11,7 @@ export default class LocationItem extends Component {
             <span>{` ${this.props.location.description}`}</span>
             <span>{` ${this.props.location.author}`}</span>
             <span>
-              <Link to={`/photos/${this.props.location.name}`}>
+              <Link to={"/photos/" + this.props.location.name}>
                 View Photos
               </Link>
             </span>

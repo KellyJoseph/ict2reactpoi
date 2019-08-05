@@ -1,13 +1,22 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 
-export default class PhotoItem extends Component {
+export default class photoItem extends Component {
   render() {
     return (
       <Fragment>
         <div>
           <span className="photoitem">
             <span>{` ${this.props.photo.name}`}</span>
+            <span>
+              <img
+                src={`${this.props.photo.url}`}
+                alt={`${this.props.photo.title}`}
+                className="img-responsive"
+              />
+            </span>
+            <span>{` ${this.props.photo.url}`}</span>
+            <span>{` ${this.props.photo._id}`}</span>
           </span>
           <span> view photos link </span>
           <span> edit handler </span>

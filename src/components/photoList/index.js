@@ -14,9 +14,12 @@ export default class PhotoList extends Component {
 
   getPhotos() {
     axios
-      .get(`${baseurl}/photos/Bull%20Island`, {
-        headers: headers
-      })
+      .get(
+        `${baseurl}/locations/${this.props.match.params.locationname}/photos`,
+        {
+          headers: headers
+        }
+      )
       .then(response => {
         console.log(response);
         this.setState({ photos: response.data });
@@ -28,6 +31,7 @@ export default class PhotoList extends Component {
 
   componentDidMount() {
     this.getPhotos();
+    console.log(this.state.photos);
   }
 
   render() {
