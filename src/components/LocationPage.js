@@ -47,17 +47,14 @@ export default class LocationPage extends Component {
           <div className="row">
             <div className="col-md-6 offset-3">
               <h1>
-                <a href="/">Hacker News</a>
+                <p>Location List </p>
               </h1>
             </div>
           </div>
           <div className="row">
             <div className="col-md-4 " />
             <div className="col-md-8">
-              <LocationList
-                locations={locations}
-                deleteHandler={this.deleteLocation}
-              />
+              <LocationList locations={locations} />
             </div>
           </div>
         </div>

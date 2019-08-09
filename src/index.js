@@ -6,7 +6,7 @@ import "./index.css";
 import Welcome from "./Welcome";
 import * as serviceWorker from "./serviceWorker";
 import Header from "./components/header/";
-//import LocationPage from "./components/LocationPage";
+import LocationPage from "./components/LocationPage";
 import LocationList from "./components/locationList";
 import PhotoList from "./components/photoList";
 import LoginForm from "./components/login";
@@ -19,11 +19,11 @@ const Router = () => (
       <Header Navigation={Header} />
       <div className="jumbotron">
         <Switch>
-          <PrivateRoute path="/locations" component={LocationList} />
+          <PrivateRoute path="/locations" component={LocationPage} />
           <Route path="/photos/:locationname" component={PhotoList} />
           <Route path="/login" component={LoginForm} />
           <Route path="/register" component={RegisterForm} />
-          <Route exact path="/" component={LoginForm} />
+          <Route exact path="/" component={Welcome} />
 
           <Route path="/location/:location_id" component={PhotoList} />
           <Redirect from="*" to="/" />

@@ -40,10 +40,8 @@ export default class LocationList extends Component {
       <LocationCard key={index} location={location} />
     ));
     return (
-      <div className="container">
-        <div className="row">
-          <div>{locationCards}</div>
-        </div>
+      <div>
+        <div>{locationCards}</div>
       </div>
     );
   }
