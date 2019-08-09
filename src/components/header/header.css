@@ -1,17 +1,13 @@
 ul {
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding: 10;
   overflow: hidden;
   background-color: #333;
 }
 
 li {
   float: left;
-}
-
-link-tabs {
-    
 }
 
 li a {
@@ -26,4 +22,7 @@ li a {
 li a:hover {
   background-color: #111;
 }
-m
+
+.nav-item {
+  padding: 14px 16px;
+}

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import LocationCard from "../locationItem";
+import PhotoCard from "../components/photoItem";
+import PhotoList from "../components/photoList";
 import Services from "../../util/services";
 import axios from "axios";
 const Id_token = localStorage.getItem("id_token");
@@ -9,19 +10,22 @@ const headers = {
   Authorization: "Bearer " + Id_token
 };
 
-export default class LocationList extends Component {
+export default class PhotoList extends Component {
   state = {
-    locations: []
+    photos: []
   };
 
-  getLocations() {
+  getPhotos() {
     axios
-      .get(`${baseurl}/locations`, {
-        headers: headers
-      })
+      .get(
+        `${baseurl}/locations/${this.props.match.params.locationname}/photos`,
+        {
+          headers: headers
+        }
+      )
       .then(response => {
         console.log(response);
-        this.setState({ locations: response.data });
+        this.setState({ photos: response.data });
       })
       .catch(error => {
         console.log(error);
@@ -29,20 +33,18 @@ export default class LocationList extends Component {
   }
 
   componentDidMount() {
-    this.getLocations();
-    //response = functions.getLocations2();
-    //this.setState({ locations2: response.data});
+    this.props.getPhotos();
   }
 
   render() {
     //const locationCards = this.props.locations.map((location, index) => (
-    const locationCards = this.state.locations.map((location, index) => (
-      <LocationCard key={index} location={location} />
+    const photoCards = this.state.photos.map((photo, index) => (
+      <PhotoCard key={index} location={photo} />
     ));
     return (
       <div className="container">
         <div className="row">
-          <div>{locationCards}</div>
+          <div>{photoCards}</div>
         </div>
       </div>
     );

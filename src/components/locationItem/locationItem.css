@@ -3,15 +3,15 @@
   margin-left: 10px;
 }
 
-.ptr {
-  cursor: pointer;
-}
-
 .author {
+  font-size: 15cm;
   padding-left: 120px;
   font-style: italic;
 }
 
 .locationitem > span {
   padding-left: 10px;
+  font-size: 15cm;
+
+  color: rgb(17, 0, 255);
 }
