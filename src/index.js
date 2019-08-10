@@ -8,6 +8,7 @@ import * as serviceWorker from "./serviceWorker";
 import Header from "./components/header/";
 import LocationPage from "./components/LocationPage";
 import LocationList from "./components/locationList";
+import PhotoPage from "./components/PhotoPage";
 import PhotoList from "./components/photoList";
 import LoginForm from "./components/login";
 import RegisterForm from "./components/register/";
@@ -20,7 +21,7 @@ const Router = () => (
       <div className="jumbotron">
         <Switch>
           <PrivateRoute path="/locations" component={LocationPage} />
-          <Route path="/photos/:locationname" component={PhotoList} />
+          <PrivateRoute path="/photos/:locationname" component={PhotoPage} />
           <Route path="/login" component={LoginForm} />
           <Route path="/register" component={RegisterForm} />
           <Route exact path="/" component={Welcome} />

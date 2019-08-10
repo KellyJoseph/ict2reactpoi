@@ -8,36 +8,11 @@ const headers = {
   Authorization: "Bearer " + Id_token
 };
 export default class PhotoList extends Component {
-  state = {
-    photos: []
-  };
-
-  getPhotos() {
-    axios
-      .get(
-        `${baseurl}/locations/${this.props.match.params.locationname}/photos`,
-        {
-          headers: headers
-        }
-      )
-      .then(response => {
-        console.log(response);
-        this.setState({ photos: response.data });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
-  componentDidMount() {
-    this.getPhotos();
-    console.log(this.state.photos);
-  }
-
   render() {
-    const photoCards = this.state.photos.map((photo, index) => (
+    const photoCards = this.props.photos.map((photo, index) => (
       <PhotoCard key={index} photo={photo} />
     ));
+    console.log(this.props.photos);
     return (
       <div>
         <div>{photoCards}</div>

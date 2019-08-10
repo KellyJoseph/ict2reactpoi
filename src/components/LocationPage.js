@@ -35,8 +35,6 @@ export default class LocationPage extends Component {
 
   componentDidMount() {
     this.getLocations();
-    //response = functions.getLocations2();
-    //this.setState({ locations2: response.data});
   }
 
   render() {
@@ -47,7 +45,7 @@ export default class LocationPage extends Component {
           <div className="row">
             <div className="col-md-6 offset-3">
               <h1>
-                <p>Location List </p>
+                <p>Location List</p>
               </h1>
             </div>
           </div>

@@ -28,15 +28,9 @@ export default class LocationList extends Component {
       });
   }
 
-  componentDidMount() {
-    this.getLocations();
-    //response = functions.getLocations2();
-    //this.setState({ locations2: response.data});
-  }
-
   render() {
     //const locationCards = this.props.locations.map((location, index) => (
-    const locationCards = this.state.locations.map((location, index) => (
+    const locationCards = this.props.locations.map((location, index) => (
       <LocationCard key={index} location={location} />
     ));
     return (

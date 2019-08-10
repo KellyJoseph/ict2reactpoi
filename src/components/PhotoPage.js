@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PhotoCard from "../components/photoItem";
 import PhotoList from "../components/photoList";
-import Services from "../../util/services";
 import axios from "axios";
 const Id_token = localStorage.getItem("id_token");
 
@@ -10,7 +9,7 @@ const headers = {
   Authorization: "Bearer " + Id_token
 };
 
-export default class PhotoList extends Component {
+export default class PhotoPage extends Component {
   state = {
     photos: []
   };
@@ -24,7 +23,7 @@ export default class PhotoList extends Component {
         }
       )
       .then(response => {
-        console.log(response);
+        console.log(response.data);
         this.setState({ photos: response.data });
       })
       .catch(error => {
@@ -33,18 +32,28 @@ export default class PhotoList extends Component {
   }
 
   componentDidMount() {
-    this.props.getPhotos();
+    this.state.photos = this.getPhotos();
+    console.log(this.state.photos);
   }
 
   render() {
-    //const locationCards = this.props.locations.map((location, index) => (
-    const photoCards = this.state.photos.map((photo, index) => (
-      <PhotoCard key={index} location={photo} />
-    ));
+    let photos = this.state.photos;
     return (
-      <div className="container">
-        <div className="row">
-          <div>{photoCards}</div>
+      <div className="jumbotron">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-md-6 offset-3">
+              <h1>
+                <p>Photo List</p>
+              </h1>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-4 " />
+            <div className="col-md-8">
+              <PhotoList photos={photos} />
+            </div>
+          </div>
         </div>
       </div>
     );
