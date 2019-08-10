@@ -5,10 +5,11 @@ import { withRouter, Redirect } from "react-router-dom";
 class LocationForm extends Component {
   state = {
     redirectToReferrer: false,
-    firstname: "",
-    lastname: "",
-    email: "",
-    password: ""
+    name: "",
+    description: "",
+    region: "",
+    latitude: "",
+    longitude: ""
   };
 
   handleChange = e => {

@@ -7,18 +7,23 @@ export default class LocationItem extends Component {
       <Fragment>
         <div className="container-fluid">
           <div className="well">
-            <div class="row">
+            <div className="row">
               <span>{` ${this.props.location.name}`}</span>
               <span>{` ${this.props.location.author}`}</span>
               <span>
                 <Link to={"/photos/" + this.props.location.name}>
-                  View Photos
+                  <button type="button">View Photos</button>
                 </Link>
               </span>
-              <span> view photos link </span>
-              <span> delete handler </span>
+              <button
+                type="button"
+                className={"button"}
+                onClick={this.props.deleteHandler(this.props.location._id)}
+              >
+                Delete
+              </button>
             </div>
-            <div class="row">
+            <div className="row">
               <span>{` ${this.props.location.description}`}</span>
             </div>
           </div>

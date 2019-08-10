@@ -28,10 +28,21 @@ export default class LocationPage extends Component {
         console.log(error);
       });
   }
+  deleteLocation(id) {
+    axios
+      .delete(`${baseurl}/locations/${id}`, {
+        headers: headers
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
-  addLocation() {}
-
-  deleteLocation() {}
+  //  { method: 'POST', path: '/api/locations', config: Locations.create },
+  addLocation() {
+    console.log("add button was pressed");
+  }
+  //   { method: 'DELETE', path: '/api/locations/{id}', config: Locations.deleteOne },
 
   componentDidMount() {
     this.getLocations();
@@ -52,7 +63,10 @@ export default class LocationPage extends Component {
           <div className="row">
             <div className="col-md-4 " />
             <div className="col-md-8">
-              <LocationList locations={locations} />
+              <LocationList
+                locations={locations}
+                deleteHandler={this.deleteLocation}
+              />
             </div>
           </div>
         </div>

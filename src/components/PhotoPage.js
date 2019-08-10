@@ -31,6 +31,15 @@ export default class PhotoPage extends Component {
       });
   }
 
+  //  { method: 'POST', path: '/api/locations', config: Locations.create },
+  addLocation() {
+    console.log("add button was pressed");
+  }
+  //   { method: 'DELETE', path: '/api/locations/{id}', config: Locations.deleteOne },
+  deleteLocation(id) {
+    console.log("delete button was pressed");
+  }
+
   componentDidMount() {
     this.state.photos = this.getPhotos();
     console.log(this.state.photos);
