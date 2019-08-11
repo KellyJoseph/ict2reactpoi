@@ -29,6 +29,7 @@ class Login extends Component {
         this.setState({ redirectToReferrer: false, password: "" });
       }
     );
+    this.setState({ firstname: "", lastname: "", email: "", password: "" });
   };
 
   render() {

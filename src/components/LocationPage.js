@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import LocationList from "./locationList";
-//import LocationForm from "./LocationForm/";
+import LocationForm from "./LocationForm/";
 import _ from "lodash";
 import axios from "axios";
 const Id_token = localStorage.getItem("id_token");
@@ -61,8 +61,9 @@ export default class LocationPage extends Component {
             </div>
           </div>
           <div className="row">
-            <div className="col-md-4 " />
-            <div className="col-md-8">
+            <div className="col-4 " />
+            <LocationForm />
+            <div className="col-7">
               <LocationList
                 locations={locations}
                 deleteHandler={this.deleteLocation}

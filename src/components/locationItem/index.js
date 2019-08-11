@@ -2,6 +2,15 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 
 export default class LocationItem extends Component {
+  state = {
+    _id: this.props.location._id
+  };
+  handleDelete = () => this.props.deleteHandler(this.state._id);
+  handleConfirm = e => {
+    e.preventDefault();
+    this.props.deleteHandler(this.state.phone);
+  };
+
   render() {
     return (
       <Fragment>
@@ -9,7 +18,8 @@ export default class LocationItem extends Component {
           <div className="well">
             <div className="row">
               <span>{` ${this.props.location.name}`}</span>
-              <span>{` ${this.props.location.author}`}</span>
+              <span>{`Author is ${this.props.location.author}`}</span>
+              <span>{`Location _id is ${this.props.location._id}`}</span>
               <span>
                 <Link to={"/photos/" + this.props.location.name}>
                   <button type="button">View Photos</button>
@@ -18,7 +28,7 @@ export default class LocationItem extends Component {
               <button
                 type="button"
                 className={"button"}
-                onClick={this.props.deleteHandler(this.props.location._id)}
+                onClick={this.handleDelete}
               >
                 Delete
               </button>

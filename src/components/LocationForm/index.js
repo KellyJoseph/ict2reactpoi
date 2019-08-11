@@ -1,105 +1,115 @@
 import React, { Component } from "react";
-import Authentication from "../../util/authentication";
-import { withRouter, Redirect } from "react-router-dom";
-
-class LocationForm extends Component {
+import axios from "axios";
+const Id_token = localStorage.getItem("id_token");
+const baseurl = "https://shrouded-brook-59989.herokuapp.com/api";
+const headers = {
+  Authorization: "Bearer " + Id_token
+};
+export default class LocationForm extends Component {
   state = {
-    redirectToReferrer: false,
     name: "",
     description: "",
     region: "",
     latitude: "",
-    longitude: ""
+    longitude: "",
+    author: ""
   };
 
-  handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+  handleNameChange = e => this.setState({ name: e.target.value });
+  handleDescriptionChange = e => this.setState({ description: e.target.value });
+  handleRegionChange = e => this.setState({ region: e.target.value });
+  handleLatitudeChange = e => this.setState({ latitude: e.target.value });
+  handleLongitudeChange = e => this.setState({ longitude: e.target.value });
+
+  addLocation = () => {
+    let body = {
+      name: this.state.name,
+      description: this.state.description,
+      region: this.state.region,
+      latitude: this.state.latitude,
+      longitude: this.state.longitude,
+      author: ""
+    };
+    axios({
+      method: "post",
+      url: "https://shrouded-brook-59989.herokuapp.com/api/locations",
+      headers: headers,
+      data: body
+    })
+      .then(response => {
+        console.log(response);
+        //this.setState({ locations: response.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
-  onSubmit = e => {
+  handleSubmit = e => {
     e.preventDefault();
-    Authentication.register(
-      this.state.firstname,
-      this.state.lastname,
-      this.state.email,
-      this.state.password,
-      () => {
-        this.setState({ redirectToReferrer: true, email: "", password: "" });
-      },
-      () => {
-        this.setState({ redirectToReferrer: false, password: "" });
-      }
-    );
+    //this.props.handleAdd(this.state.name, this.state.description, this.state.region, this.state.latitude, this.state.longitude);
+    this.addLocation();
+
+    this.setState({ name: "", description: "", region: "" });
   };
 
   render() {
-    const { redirectToReferrer } = this.state;
-    const { from } = this.props.location.state || { from: { pathname: "/" } };
-    if (redirectToReferrer === true) {
-      return <Redirect to={from} />;
-    }
-
     return (
-      <div className="row">
-        <div className="col-md-4 offset-3">
-          {Authentication.error === 401 ? <p>Invalid email/password</p> : <p />}
-          <form style={{ marginTop: "30px" }}>
-            <h3>Signup</h3>
-
-            <div className="form-group">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="firstname"
-                name="firstname"
-                value={this.state.firstname}
-                onChange={this.handleChange}
-              />
-            </div>
-
-            <div className="form-group">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="lastname"
-                name="lastname"
-                value={this.state.lastname}
-                onChange={this.handleChange}
-              />
-            </div>
-
-            <div className="form-group">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Email"
-                name="email"
-                value={this.state.email}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleChange}
-              />
-            </div>
-            <button
-              type="submit"
-              className="btn btn-primary"
-              onClick={this.onSubmit}
-            >
-              Submit
-            </button>
-          </form>
+      <form className="form bg-dark text-light">
+        <h3>Add a Location</h3>
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Name"
+            value={this.state.name}
+            onChange={this.handleNameChange}
+          />
         </div>
-      </div>
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Description"
+            value={this.state.description}
+            onChange={this.handleDescriptionChange}
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Region"
+            value={this.state.region}
+            onChange={this.handleRegionChange}
+          />
+        </div>{" "}
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Lat"
+            value={this.state.latitude}
+            onChange={this.handleLatitudeChange}
+          />
+        </div>{" "}
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="long"
+            value={this.state.longitude}
+            onChange={this.handleLongitudeChange}
+          />
+        </div>
+        <button
+          type="submit"
+          className="btn btn-primary"
+          onClick={this.handleSubmit}
+        >
+          Add
+        </button>
+      </form>
     );
   }
 }
-
-export default withRouter(LocationForm);
