@@ -60,15 +60,15 @@ export default class LocationPage extends Component {
               </h1>
             </div>
           </div>
-          <div className="row">
-            <div className="col-4 " />
+          <div className="body">
+            <div className="column" />
             <LocationForm />
-            <div className="col-7">
-              <LocationList
-                locations={locations}
-                deleteHandler={this.deleteLocation}
-              />
-            </div>
+          </div>
+          <div className="column">
+            <LocationList
+              locations={locations}
+              deleteHandler={this.deleteLocation}
+            />
           </div>
         </div>
       </div>

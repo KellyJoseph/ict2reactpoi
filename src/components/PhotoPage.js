@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PhotoCard from "../components/photoItem";
+import PhotoForm from "..//components/photoForm";
 import PhotoList from "../components/photoList";
 import axios from "axios";
 const Id_token = localStorage.getItem("id_token");
@@ -46,6 +47,7 @@ export default class PhotoPage extends Component {
   }
 
   render() {
+    let locationName = this.props.match.params.locationname;
     let photos = this.state.photos;
     return (
       <div className="jumbotron">
@@ -59,6 +61,7 @@ export default class PhotoPage extends Component {
           </div>
           <div className="row">
             <div className="col-md-4 " />
+            <PhotoForm locationName={locationName} />
             <div className="col-md-8">
               <PhotoList photos={photos} />
             </div>
