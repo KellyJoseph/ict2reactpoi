@@ -2,6 +2,11 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 
 export default class photoItem extends Component {
+  state = {
+    _id: this.props.photo._id
+  };
+  handleDelete = () => this.props.deletePhoto(this.state._id);
+
   render() {
     return (
       <Fragment>
@@ -20,7 +25,16 @@ export default class photoItem extends Component {
           </span>
           <span> view photos link </span>
           <span> edit handler </span>
-          <span> delete handler </span>
+          <span>
+            {" "}
+            <button
+              type="button"
+              className={"button"}
+              onClick={this.handleDelete}
+            >
+              Delete
+            </button>{" "}
+          </span>
         </div>
       </Fragment>
     );

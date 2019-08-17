@@ -10,7 +10,11 @@ const headers = {
 export default class PhotoList extends Component {
   render() {
     const photoCards = this.props.photos.map((photo, index) => (
-      <PhotoCard key={index} photo={photo} />
+      <PhotoCard
+        key={index}
+        photo={photo}
+        deletePhoto={this.props.deletePhoto}
+      />
     ));
     console.log(this.props.photos);
     return (

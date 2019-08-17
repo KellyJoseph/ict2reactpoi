@@ -19,6 +19,7 @@ export default class Services {
       .catch(error => {
         console.log(error);
       });
+    this.setState({});
   }
 
   addLocation = (name, description, region, latitude, longitude) => {
@@ -38,7 +39,7 @@ export default class Services {
     })
       .then(response => {
         console.log(response);
-        //this.setState({ locations: response.data });
+        this.setState({});
       })
       .catch(error => {
         console.log(error);
@@ -53,7 +54,40 @@ export default class Services {
       .catch(error => {
         console.log(error);
       });
+    this.setState({});
   }
+
+  deletePhoto(id) {
+    axios
+      .delete(`${baseurl}/photos/${id}`, {
+        headers: headers
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  addPhoto = (title, location, file) => {
+    const fd = new FormData();
+    fd.append("title", title);
+    fd.append("location", location);
+    fd.append("file", file);
+    axios({
+      method: "post",
+      const: baseurl,
+      url: `${baseurl}/locations/${location}/photos`,
+      headers: headers,
+      data: fd
+    })
+      .then(response => {
+        console.log(response);
+        //this.setState({ locations: response.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    this.setState({});
+  };
 }
 
 /*

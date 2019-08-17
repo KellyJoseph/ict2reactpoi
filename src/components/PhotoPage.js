@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import PhotoCard from "../components/photoItem";
 import PhotoForm from "..//components/photoForm";
 import PhotoList from "../components/photoList";
 import axios from "axios";
+import Service from "../util/services";
 const Id_token = localStorage.getItem("id_token");
+const services = new Service();
 
 const baseurl = "https://shrouded-brook-59989.herokuapp.com/api";
 const headers = {
@@ -12,17 +13,15 @@ const headers = {
 
 export default class PhotoPage extends Component {
   state = {
-    photos: []
+    photos: [],
+    locationname: this.props.match.params.locationname
   };
 
   getPhotos() {
     axios
-      .get(
-        `${baseurl}/locations/${this.props.match.params.locationname}/photos`,
-        {
-          headers: headers
-        }
-      )
+      .get(`${baseurl}/locations/${this.state.locationname}/photos`, {
+        headers: headers
+      })
       .then(response => {
         console.log(response.data);
         this.setState({ photos: response.data });
@@ -32,17 +31,31 @@ export default class PhotoPage extends Component {
       });
   }
 
-  //  { method: 'POST', path: '/api/locations', config: Locations.create },
-  addLocation() {
-    console.log("add button was pressed");
-  }
-  //   { method: 'DELETE', path: '/api/locations/{id}', config: Locations.deleteOne },
-  deleteLocation(id) {
-    console.log("delete button was pressed");
-  }
+  addPhoto = (title, location, file) => {
+    const fd = new FormData();
+    fd.append("title", title);
+    fd.append("location", location);
+    fd.append("file", file);
+    axios({
+      method: "post",
+      const: baseurl,
+      url: `${baseurl}/locations/${location}/photos`,
+      headers: headers,
+      data: fd
+    })
+      .then(response => {
+        console.log(response);
+        //this.setState({ locations: response.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    this.setState({});
+  };
 
   componentDidMount() {
     this.state.photos = this.getPhotos();
+    //this.state.photos = services.getPhotos(this.state.locationname);
     console.log(this.state.photos);
   }
 
@@ -61,9 +74,12 @@ export default class PhotoPage extends Component {
           </div>
           <div className="row">
             <div className="col-md-4 " />
-            <PhotoForm locationName={locationName} />
+            <PhotoForm
+              locationName={locationName}
+              addPhoto={services.addPhoto}
+            />
             <div className="col-md-8">
-              <PhotoList photos={photos} />
+              <PhotoList photos={photos} deletePhoto={services.deletePhoto} />
             </div>
           </div>
         </div>

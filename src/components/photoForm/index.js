@@ -20,8 +20,12 @@ export default class PhotoForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    //this.props.handleAdd(this.state.name, this.state.description, this.state.region, this.state.latitude, this.state.longitude);
-    const fd = new FormData();
+    this.props.addPhoto(
+      this.state.title,
+      this.state.location,
+      this.state.selectedFile
+    );
+    /*const fd = new FormData();
     fd.append("title", this.state.title);
     fd.append("location", this.props.locationName);
     fd.append("file", this.state.selectedFile);
@@ -41,6 +45,7 @@ export default class PhotoForm extends Component {
       });
 
     this.setState({ title: "", selectedFile: null });
+    */
   };
 
   render() {
