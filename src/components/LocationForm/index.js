@@ -21,34 +21,16 @@ export default class LocationForm extends Component {
   handleLatitudeChange = e => this.setState({ latitude: e.target.value });
   handleLongitudeChange = e => this.setState({ longitude: e.target.value });
 
-  addLocation = () => {
-    let body = {
-      name: this.state.name,
-      description: this.state.description,
-      region: this.state.region,
-      latitude: this.state.latitude,
-      longitude: this.state.longitude,
-      author: ""
-    };
-    axios({
-      method: "post",
-      url: "https://shrouded-brook-59989.herokuapp.com/api/locations",
-      headers: headers,
-      data: body
-    })
-      .then(response => {
-        console.log(response);
-        //this.setState({ locations: response.data });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
-
   handleSubmit = e => {
     e.preventDefault();
     //this.props.handleAdd(this.state.name, this.state.description, this.state.region, this.state.latitude, this.state.longitude);
-    this.addLocation();
+    this.props.addLocation(
+      this.state.name,
+      this.state.description,
+      this.state.region,
+      this.state.latitude,
+      this.state.longitude
+    );
 
     this.setState({ name: "", description: "", region: "" });
   };

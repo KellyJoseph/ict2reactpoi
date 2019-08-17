@@ -5,11 +5,7 @@ export default class LocationItem extends Component {
   state = {
     _id: this.props.location._id
   };
-  handleDelete = () => this.props.deleteHandler(this.state._id);
-  handleConfirm = e => {
-    e.preventDefault();
-    this.props.deleteHandler(this.state.phone);
-  };
+  handleDelete = () => this.props.deleteLocation(this.state._id);
 
   render() {
     return (

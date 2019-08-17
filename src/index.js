@@ -7,7 +7,6 @@ import Welcome from "./Welcome";
 import * as serviceWorker from "./serviceWorker";
 import Header from "./components/header/";
 import LocationPage from "./components/LocationPage";
-import LocationList from "./components/locationList";
 import PhotoPage from "./components/PhotoPage";
 import PhotoList from "./components/photoList";
 import LoginForm from "./components/login";

@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import LocationList from "./locationList";
 import LocationForm from "./LocationForm/";
+import Service from "../util/services";
 import _ from "lodash";
 import axios from "axios";
 const Id_token = localStorage.getItem("id_token");
+
+const services = new Service();
 
 const baseurl = "https://shrouded-brook-59989.herokuapp.com/api";
 const headers = {
@@ -38,12 +41,6 @@ export default class LocationPage extends Component {
       });
   }
 
-  //  { method: 'POST', path: '/api/locations', config: Locations.create },
-  addLocation() {
-    console.log("add button was pressed");
-  }
-  //   { method: 'DELETE', path: '/api/locations/{id}', config: Locations.deleteOne },
-
   componentDidMount() {
     this.getLocations();
   }
@@ -62,12 +59,12 @@ export default class LocationPage extends Component {
           </div>
           <div className="body">
             <div className="column" />
-            <LocationForm />
+            <LocationForm addLocation={services.addLocation} />
           </div>
           <div className="column">
             <LocationList
               locations={locations}
-              deleteHandler={this.deleteLocation}
+              deleteLocation={services.deleteLocation}
             />
           </div>
         </div>

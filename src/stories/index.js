@@ -12,6 +12,39 @@ import { linkTo } from "@storybook/addon-links";
 import { Button, Welcome } from "@storybook/react/demo";
 import { MemoryRouter, Route } from "react-router";
 
+const sampleUser = {
+  _id: "5d547a1dd5f125001703a640",
+  firstName: "Homer",
+  lastName: "Simpson",
+  email: "homer@simpson.com",
+  password: "$2a$10$uqnPlgyVjBEOtcgMhn/WRO3FwW4T9gX36tTB4RqpGeB/LkCR3YQuO"
+};
+
+const users = [sampleUser, sampleUser, sampleUser];
+
+const sampleLocation = {
+  _id: "5d547a1dd5f125001703a644",
+  name: "Bull Island",
+  description: "Not very pretty",
+  author: "5d547a1dd5f125001703a642",
+  region: "East",
+  latitude: "9875",
+  longitude: "1234"
+};
+
+const locations = [sampleLocation, sampleLocation, sampleLocation];
+
+const samplePhoto = {
+  _id: "5d547a1ed5f125001703a647",
+  title: "Bull",
+  url:
+    "http://res.cloudinary.com/dxdletsbp/image/upload/v1551853670/tctdudzuhwwtkfexzvlv.webp",
+  public_id: "tctdudzuhwwtkfexzvlv",
+  location: "Bull Island"
+};
+
+const photos = [samplePhoto, samplePhoto, samplePhoto];
+
 storiesOf("Welcome", module).add("to Storybook", () => (
   <Welcome showApp={linkTo("Button")} />
 ));
@@ -34,17 +67,22 @@ storiesOf("POI App/Header", module)
   ))
   .add("default", () => <Header />);
 
-storiesOf("POI App/Photo", module).add("default", () => <Photo />);
+storiesOf("POI App/Photo", module).add("default", () => (
+  <Photo photo={samplePhoto} />
+));
 
-storiesOf("POI App/PhotoList", module).add("default", () => <PhotoList />);
+storiesOf("POI App/PhotoList", module).add("default", () => (
+  <PhotoList photos={photos} />
+));
 
-storiesOf("POI App/Location", module).add("default", () => <Location />);
+storiesOf("POI App/Location", module).add("default", () => (
+  <Location location={sampleLocation} />
+));
 
 storiesOf("POI App/Location List", module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
   ))
   .add("default", () => {
-    const locationSamples = DataStore.locations;
-    return <LocationList contacts={locationSamples} />;
+    return <LocationList locations={locations} />;
   });

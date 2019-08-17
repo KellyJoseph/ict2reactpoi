@@ -7,66 +7,52 @@ const headers = {
 };
 
 export default class Services {
-  async getLocations() {
-    try {
-      const response = await axios.get(`${baseurl}/locations`, {
-        headers: headers
-      });
-      console.log("status is", response.status);
-      return response.status;
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  getLocations2() {
+  getLocations() {
     axios
       .get(`${baseurl}/locations`, {
         headers: headers
       })
       .then(response => {
         console.log(response);
-        //this.setState({ locations2: response.data });
+        this.setState({ locations: response.data });
       })
       .catch(error => {
         console.log(error);
       });
   }
 
-  async getPhotos() {
-    try {
-      const response = await axios.get(`${baseurl}/photos`, {
-        headers: { Authorization: `JWT ${Id_token}` }
+  addLocation = (name, description, region, latitude, longitude) => {
+    let body = {
+      name: name,
+      description: description,
+      region: region,
+      latitude: latitude,
+      longitude: longitude,
+      author: ""
+    };
+    axios({
+      method: "post",
+      url: "https://shrouded-brook-59989.herokuapp.com/api/locations",
+      headers: headers,
+      data: body
+    })
+      .then(response => {
+        console.log(response);
+        //this.setState({ locations: response.data });
+      })
+      .catch(error => {
+        console.log(error);
       });
-      console.log(response.content);
-      return response.content;
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  };
 
-  async getUsers() {
-    try {
-      const response = await axios.get(`${baseurl}/users`, {
-        headers: { Authorization: `JWT ${Id_token}` }
+  deleteLocation(id) {
+    axios
+      .delete(`${baseurl}/locations/${id}`, {
+        headers: headers
+      })
+      .catch(error => {
+        console.log(error);
       });
-      console.log(response.content);
-      return response.content;
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  async getComments() {
-    try {
-      const response = await axios.get(`${baseurl}/comments`, {
-        headers: { Authorization: `JWT ${Id_token}` }
-      });
-      console.log(response.content);
-      return response.content;
-    } catch (error) {
-      console.error(error);
-    }
   }
 }
 
