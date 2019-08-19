@@ -19,7 +19,6 @@ export default class Services {
       .catch(error => {
         console.log(error);
       });
-    this.setState({});
   }
 
   addLocation = (name, description, region, latitude, longitude) => {
@@ -54,7 +53,6 @@ export default class Services {
       .catch(error => {
         console.log(error);
       });
-    this.setState({});
   }
 
   deletePhoto(id) {
@@ -86,7 +84,6 @@ export default class Services {
       .catch(error => {
         console.log(error);
       });
-    this.setState({});
   };
 }
 

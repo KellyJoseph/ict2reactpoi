@@ -21,6 +21,8 @@ export default class LocationForm extends Component {
   handleLatitudeChange = e => this.setState({ latitude: e.target.value });
   handleLongitudeChange = e => this.setState({ longitude: e.target.value });
 
+  //handleRegionChange = e => this.setState({ gender: e.target.value )};
+
   handleSubmit = e => {
     e.preventDefault();
     //this.props.handleAdd(this.state.name, this.state.description, this.state.region, this.state.latitude, this.state.longitude);
@@ -37,7 +39,7 @@ export default class LocationForm extends Component {
 
   render() {
     return (
-      <form className="form bg-dark text-light">
+      <form className="form">
         <h3>Add a Location</h3>
         <div className="form-group">
           <input
@@ -58,14 +60,17 @@ export default class LocationForm extends Component {
           />
         </div>
         <div className="form-group">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Region"
-            value={this.state.region}
-            onChange={this.handleRegionChange}
-          />
-        </div>{" "}
+          <select id="gender" onChange={this.handleRegionChange}>
+            <option value="North">North</option>
+            <option value="North East">North East</option>
+            <option value="East">East</option>
+            <option value="South East">South East</option>
+            <option value="South">South</option>
+            <option value="South West">South West</option>
+            <option value="West">West</option>
+            <option value="North West">North West</option>
+          </select>
+        </div>
         <div className="form-group">
           <input
             type="text"

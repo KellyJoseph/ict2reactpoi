@@ -11,16 +11,19 @@ export default class LocationItem extends Component {
     return (
       <Fragment>
         <div className="container-fluid">
-          <div className="well">
-            <div className="row">
+          <div className="card">
+            <div className="card-header">
               <span>{` ${this.props.location.name}`}</span>
-              <span>{`Author is ${this.props.location.author}`}</span>
-              <span>{`Location _id is ${this.props.location._id}`}</span>
-              <span>
-                <Link to={"/photos/" + this.props.location.name}>
-                  <button type="button">View Photos</button>
-                </Link>
-              </span>
+            </div>
+            <div class="card-body">
+              <div className="row">
+                <span>{`Posted by ${this.props.location.author}`}</span>
+              </div>
+              <div className="row">
+                <span>{` ${this.props.location.description}`}</span>
+              </div>
+            </div>
+            <div className="card-footer">
               <button
                 type="button"
                 className={"button"}
@@ -28,9 +31,9 @@ export default class LocationItem extends Component {
               >
                 Delete
               </button>
-            </div>
-            <div className="row">
-              <span>{` ${this.props.location.description}`}</span>
+              <Link to={"/photos/" + this.props.location.name}>
+                <button type="button">View Photos</button>
+              </Link>
             </div>
           </div>
         </div>

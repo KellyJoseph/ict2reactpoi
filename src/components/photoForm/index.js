@@ -25,33 +25,13 @@ export default class PhotoForm extends Component {
       this.state.location,
       this.state.selectedFile
     );
-    /*const fd = new FormData();
-    fd.append("title", this.state.title);
-    fd.append("location", this.props.locationName);
-    fd.append("file", this.state.selectedFile);
-    axios({
-      method: "post",
-      const: baseurl,
-      url: `${baseurl}/locations/${this.props.locationName}/photos`,
-      headers: headers,
-      data: fd
-    })
-      .then(response => {
-        console.log(response);
-        //this.setState({ locations: response.data });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-
     this.setState({ title: "", selectedFile: null });
-    */
   };
 
   render() {
     return (
       <form className="form">
-        <h3>Add a Location</h3>
+        <h3>Add a Photo</h3>
         <div className="form-group">
           <input
             type="file"

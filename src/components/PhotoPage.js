@@ -31,6 +31,16 @@ export default class PhotoPage extends Component {
       });
   }
 
+  deletePhoto(id) {
+    axios
+      .delete(`${baseurl}/photos/${id}`, {
+        headers: headers
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   addPhoto = (title, location, file) => {
     const fd = new FormData();
     fd.append("title", title);
@@ -45,7 +55,6 @@ export default class PhotoPage extends Component {
     })
       .then(response => {
         console.log(response);
-        //this.setState({ locations: response.data });
       })
       .catch(error => {
         console.log(error);
@@ -67,19 +76,17 @@ export default class PhotoPage extends Component {
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-6 offset-3">
-              <h1>
-                <p>Photo List</p>
-              </h1>
+              <h1> {` ${this.state.locationname}`} Photos</h1>
             </div>
           </div>
+
           <div className="row">
-            <div className="col-md-4 " />
-            <PhotoForm
-              locationName={locationName}
-              addPhoto={services.addPhoto}
-            />
+            <div className="col-md-4 ">
+              <PhotoForm locationName={locationName} addPhoto={this.addPhoto} />
+            </div>
+
             <div className="col-md-8">
-              <PhotoList photos={photos} deletePhoto={services.deletePhoto} />
+              <PhotoList photos={photos} deletePhoto={this.deletePhoto} />
             </div>
           </div>
         </div>

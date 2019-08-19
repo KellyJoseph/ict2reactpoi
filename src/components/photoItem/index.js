@@ -10,31 +10,31 @@ export default class photoItem extends Component {
   render() {
     return (
       <Fragment>
-        <div>
-          <span className="photoitem">
-            <span>{` ${this.props.photo.name}`}</span>
-            <span>
-              <img
-                src={`${this.props.photo.url}`}
-                alt={`${this.props.photo.title}`}
-                className="img-responsive"
-              />
-            </span>
-            <span>{` ${this.props.photo.url}`}</span>
-            <span>{` ${this.props.photo._id}`}</span>
-          </span>
-          <span> view photos link </span>
-          <span> edit handler </span>
-          <span>
-            {" "}
-            <button
-              type="button"
-              className={"button"}
-              onClick={this.handleDelete}
-            >
-              Delete
-            </button>{" "}
-          </span>
+        <div className="container-fluid">
+          <div className="card">
+            <div className="card-header">
+              <span>{` ${this.props.photo.name}`}</span>
+            </div>
+            <div className="card-body">
+              <span>
+                <img
+                  src={`${this.props.photo.url}`}
+                  alt={`${this.props.photo.title}`}
+                  className="img-responsive"
+                  resizeMode="contain"
+                />
+              </span>
+            </div>
+            <div className="card-footer">
+              <button
+                type="button"
+                className={"button"}
+                onClick={this.handleDelete}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
         </div>
       </Fragment>
     );
