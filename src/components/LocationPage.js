@@ -5,7 +5,6 @@ import Service from "../util/services";
 import _ from "lodash";
 import axios from "axios";
 const Id_token = localStorage.getItem("id_token");
-
 const services = new Service();
 
 const baseurl = "https://shrouded-brook-59989.herokuapp.com/api";
@@ -17,6 +16,10 @@ export default class LocationPage extends Component {
   state = {
     locations: []
   };
+
+  componentDidMount() {
+    this.getLocations();
+  }
 
   getLocations() {
     axios
@@ -49,20 +52,25 @@ export default class LocationPage extends Component {
     })
       .then(response => {
         console.log(response);
-        this.setState({});
+        //this.setState({ locations: response.data });
+        this.setState({
+          locations: this.state.locations.concat(response.data)
+        });
       })
       .catch(error => {
         console.log(error);
       });
   };
 
-  deleteLocation = id => {
-    services.deleteLocation(id);
-    this.setState({}); //trigger re rendering without actually altering the state
-  };
-
-  componentDidMount() {
-    this.getLocations();
+  deleteLocation(id) {
+    axios
+      .delete(`${baseurl}/locations/${id}`, {
+        headers: headers
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    this.setState({});
   }
 
   render() {
@@ -79,7 +87,10 @@ export default class LocationPage extends Component {
 
           <div className="row">
             <div className="col-md-4 ">
-              <LocationForm addLocation={this.addLocation} />
+              <LocationForm
+                addLocation={this.addLocation}
+                reRender={this.rerender}
+              />
             </div>
 
             <div className="col-md-8">
