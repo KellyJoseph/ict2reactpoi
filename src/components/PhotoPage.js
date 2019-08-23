@@ -3,12 +3,12 @@ import PhotoForm from "..//components/photoForm";
 import PhotoList from "../components/photoList";
 import axios from "axios";
 import Service from "../util/services";
-const Id_token = localStorage.getItem("id_token");
+const jwt = localStorage.getItem("jwt");
 const services = new Service();
 
 const baseurl = "https://shrouded-brook-59989.herokuapp.com/api";
 const headers = {
-  Authorization: "Bearer " + Id_token
+  Authorization: "Bearer " + jwt
 };
 
 export default class PhotoPage extends Component {

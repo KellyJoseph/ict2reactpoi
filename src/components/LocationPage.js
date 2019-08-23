@@ -4,12 +4,12 @@ import LocationForm from "./LocationForm/";
 import Service from "../util/services";
 import _ from "lodash";
 import axios from "axios";
-const Id_token = localStorage.getItem("id_token");
+const jwt = localStorage.getItem("jwt");
 const services = new Service();
 
 const baseurl = "https://shrouded-brook-59989.herokuapp.com/api";
 const headers = {
-  Authorization: "Bearer " + Id_token
+  Authorization: "Bearer " + jwt
 };
 
 export default class LocationPage extends Component {
@@ -89,6 +89,7 @@ export default class LocationPage extends Component {
           <div className="header">
             <div className="col-md-6 offset-3">
               <h1>Locations</h1>
+              <h3>`jwt is ${jwt}</h3>
             </div>
           </div>
 

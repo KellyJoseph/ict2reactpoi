@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import axios from "axios";
 import PhotoCard from "../photoItem";
 const baseurl = "https://shrouded-brook-59989.herokuapp.com/api";
-const Id_token = localStorage.getItem("id_token");
+const jwt = localStorage.getItem("jwt");
 
 const headers = {
-  Authorization: "Bearer " + Id_token
+  Authorization: "Bearer " + jwt
 };
 export default class PhotoList extends Component {
   render() {

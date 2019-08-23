@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
-const Id_token = localStorage.getItem("id_token");
+const jwt = localStorage.getItem("jwt");
 const baseurl = "https://shrouded-brook-59989.herokuapp.com/api";
 const headers = {
-  Authorization: "Bearer " + Id_token
+  Authorization: "Bearer " + jwt
 };
 export default class LocationForm extends Component {
   state = {

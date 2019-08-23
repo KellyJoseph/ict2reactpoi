@@ -4,7 +4,7 @@ import axios from "axios";
 class Authentication {
   constructor() {
     this.baseurl = "https://shrouded-brook-59989.herokuapp.com/api"; // API server domain
-    this.fetch = this.fetch.bind(this); // React binding stuff
+    this.fetch = this.fetch.bind(this);
     this.login = this.login.bind(this);
     this.getProfile = this.getProfile.bind(this);
     this.isAuthenticated = false;
@@ -71,17 +71,17 @@ class Authentication {
 
   setToken(idToken) {
     // Saves user token to localStorage
-    localStorage.setItem("id_token", idToken);
+    localStorage.setItem("jwt", idToken);
   }
 
   getToken() {
     // Retrieves the user token from localStorage
-    return localStorage.getItem("id_token");
+    return localStorage.getItem("jwt");
   }
 
   logout() {
     // Clear user token and profile data from localStorage
-    localStorage.removeItem("id_token");
+    localStorage.removeItem("jwt");
   }
 
   getProfile() {
