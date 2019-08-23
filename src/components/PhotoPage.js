@@ -31,15 +31,21 @@ export default class PhotoPage extends Component {
       });
   }
 
-  deletePhoto(id) {
+  deletePhoto = id => {
     axios
       .delete(`${baseurl}/photos/${id}`, {
         headers: headers
       })
+      .then(response => {
+        console.log(response);
+        this.setState({
+          photos: this.state.photos.filter(photo => photo._id !== id)
+        });
+      })
       .catch(error => {
         console.log(error);
       });
-  }
+  };
 
   addPhoto = (title, location, file) => {
     const fd = new FormData();
@@ -55,6 +61,9 @@ export default class PhotoPage extends Component {
     })
       .then(response => {
         console.log(response);
+        this.setState({
+          photos: this.state.photos.concat(response.data)
+        });
       })
       .catch(error => {
         console.log(error);

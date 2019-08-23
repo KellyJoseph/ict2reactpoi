@@ -62,16 +62,23 @@ export default class LocationPage extends Component {
       });
   };
 
-  deleteLocation(id) {
+  deleteLocation = id => {
     axios
       .delete(`${baseurl}/locations/${id}`, {
         headers: headers
       })
+      .then(response => {
+        console.log(response);
+        this.setState({
+          locations: this.state.locations.filter(
+            location => location._id !== id
+          )
+        });
+      })
       .catch(error => {
         console.log(error);
       });
-    this.setState({});
-  }
+  };
 
   render() {
     let locations = this.state.locations;
