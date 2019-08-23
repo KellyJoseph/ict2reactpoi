@@ -45,6 +45,7 @@ export default class LocationForm extends Component {
           <input
             type="text"
             className="form-control"
+            id="name"
             placeholder="Name"
             value={this.state.name}
             onChange={this.handleNameChange}
@@ -54,13 +55,14 @@ export default class LocationForm extends Component {
           <input
             type="text"
             className="form-control"
+            id="description"
             placeholder="Description"
             value={this.state.description}
             onChange={this.handleDescriptionChange}
           />
         </div>
         <div className="form-group">
-          <select id="gender" onChange={this.handleRegionChange}>
+          <select id="region" onChange={this.handleRegionChange}>
             <option value="North">North</option>
             <option value="North East">North East</option>
             <option value="East">East</option>
@@ -75,6 +77,7 @@ export default class LocationForm extends Component {
           <input
             type="text"
             className="form-control"
+            id="latitude"
             placeholder="Lat"
             value={this.state.latitude}
             onChange={this.handleLatitudeChange}
@@ -84,6 +87,7 @@ export default class LocationForm extends Component {
           <input
             type="text"
             className="form-control"
+            id="longitude"
             placeholder="long"
             value={this.state.longitude}
             onChange={this.handleLongitudeChange}

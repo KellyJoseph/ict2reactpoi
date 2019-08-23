@@ -14,17 +14,24 @@ const headers = {
 
 export default class LocationPage extends Component {
   state = {
-    locations: []
+    locations: [],
+    jwt: ""
   };
 
-  componentDidMount() {
+  async componentDidMount() {
+    this.state.jwt = localStorage.getItem("jwt");
+    //getLocations initially queried localStorage for JWT. getLocations was triggered
+    //after the login response was returned but before finishing  writing the JWT to
+    //localStorage this caused prolems for tests
     this.getLocations();
   }
 
   getLocations() {
     axios
       .get(`${baseurl}/locations`, {
-        headers: headers
+        headers: {
+          Authorization: "Bearer " + this.state.jwt
+        }
       })
       .then(response => {
         console.log(response);
@@ -47,7 +54,9 @@ export default class LocationPage extends Component {
     axios({
       method: "post",
       url: "https://shrouded-brook-59989.herokuapp.com/api/locations",
-      headers: headers,
+      headers: {
+        Authorization: "Bearer " + this.state.jwt
+      },
       data: body
     })
       .then(response => {
@@ -65,7 +74,9 @@ export default class LocationPage extends Component {
   deleteLocation = id => {
     axios
       .delete(`${baseurl}/locations/${id}`, {
-        headers: headers
+        headers: {
+          Authorization: "Bearer " + this.state.jwt
+        }
       })
       .then(response => {
         console.log(response);
@@ -89,7 +100,6 @@ export default class LocationPage extends Component {
           <div className="header">
             <div className="col-md-6 offset-3">
               <h1>Locations</h1>
-              <h3>`jwt is ${jwt}</h3>
             </div>
           </div>
 
