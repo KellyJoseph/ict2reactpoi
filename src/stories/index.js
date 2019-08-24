@@ -4,8 +4,10 @@ import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import Header from "../../src/components/header";
 import Location from "../../src/components/locationItem";
 import LocationList from "../../src/components/locationList";
+import LocationForm from "../components/LocationForm";
 import Photo from "../../src/components/photoItem";
 import PhotoList from "../../src/components/photoList";
+import PhotoForm from "../components/photoForm";
 import DataStore from "../../src/datastore/stubAPI";
 import { action } from "@storybook/addon-actions";
 import { linkTo } from "@storybook/addon-links";
@@ -68,15 +70,26 @@ storiesOf("POI App/Header", module)
   .add("default", () => <Header />);
 
 storiesOf("POI App/Photo", module).add("default", () => (
-  <Photo photo={samplePhoto} />
+  <Photo photo={samplePhoto} deletePhoto={action("clicked")} />
 ));
 
 storiesOf("POI App/PhotoList", module).add("default", () => (
-  <PhotoList photos={photos} />
+  <PhotoList photos={photos} deletePhoto={action("delete button pressed")} />
+));
+
+storiesOf("POI App/PhotoForm", module).add("default", () => (
+  <PhotoForm addPhoto={action("add photo button pressed")} />
 ));
 
 storiesOf("POI App/Location", module).add("default", () => (
-  <Location location={sampleLocation} />
+  <Location
+    location={sampleLocation}
+    deletLocation={action("delete button pressed")}
+  />
+));
+
+storiesOf("POI App/LocationForm", module).add("default", () => (
+  <LocationForm addLocation={action("add Location button pressed")} />
 ));
 
 storiesOf("POI App/Location List", module)
@@ -84,5 +97,10 @@ storiesOf("POI App/Location List", module)
     <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
   ))
   .add("default", () => {
-    return <LocationList locations={locations} />;
+    return (
+      <LocationList
+        locations={locations}
+        deleteLocation={action("delete button pressed")}
+      />
+    );
   });
