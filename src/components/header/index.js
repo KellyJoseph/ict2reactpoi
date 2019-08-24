@@ -24,6 +24,11 @@ export default class Form extends Component {
             </NavLink>
           </li>
           <li className="navbar-brand">
+            <NavLink className="navbar-brand text-white" to="/logout">
+              Log Out
+            </NavLink>
+          </li>
+          <li className="navbar-brand">
             <NavLink className="navbar-brand text-white" to="/register">
               Sign Up
             </NavLink>

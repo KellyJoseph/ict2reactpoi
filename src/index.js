@@ -12,6 +12,7 @@ import PhotoList from "./components/photoList";
 import LoginForm from "./components/login";
 import RegisterForm from "./components/register/";
 import PrivateRoute from "./components/privateRoute";
+import Logout from "./Logout";
 
 const Router = () => (
   <BrowserRouter>
@@ -23,6 +24,7 @@ const Router = () => (
           <PrivateRoute path="/photos/:locationname" component={PhotoPage} />
           <Route path="/login" component={LoginForm} />
           <Route path="/register" component={RegisterForm} />
+          <Route path="/logout" component={Logout} />
           <Route exact path="/" component={Welcome} />
 
           <Route path="/location/:location_id" component={PhotoList} />
