@@ -26,13 +26,16 @@ export default class LocationItem extends Component {
             <div className="card-footer">
               <button
                 type="button"
+                id="delete-button"
                 className={"button"}
                 onClick={this.handleDelete}
               >
                 Delete
               </button>
               <Link to={"/photos/" + this.props.location.name}>
-                <button type="button">View Photos</button>
+                <button type="button" id="photos">
+                  View Photos
+                </button>
               </Link>
             </div>
           </div>

@@ -13,7 +13,7 @@ export default class photoItem extends Component {
         <div className="container-fluid">
           <div className="card">
             <div className="card-header">
-              <span>{` ${this.props.photo.name}`}</span>
+              <span>{` ${this.props.photo.title}`}</span>
             </div>
             <div className="card-body">
               <span>
@@ -28,6 +28,7 @@ export default class photoItem extends Component {
             <div className="card-footer">
               <button
                 type="button"
+                id="delete-button"
                 className={"button"}
                 onClick={this.handleDelete}
               >

@@ -36,6 +36,7 @@ export default class PhotoForm extends Component {
           <input
             type="file"
             placeholder="Name"
+            id="file-upload"
             value={this.state.file}
             onChange={this.handleFileChange}
           />
@@ -45,6 +46,7 @@ export default class PhotoForm extends Component {
             type="text"
             className="form-control"
             placeholder="title"
+            id="photo-name"
             value={this.state.title}
             onChange={this.handleTitleChange}
           />
@@ -53,6 +55,7 @@ export default class PhotoForm extends Component {
         <button
           type="submit"
           className="btn btn-primary"
+          id="submit-button"
           onClick={this.handleSubmit}
         >
           Add

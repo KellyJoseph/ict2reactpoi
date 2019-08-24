@@ -14,13 +14,16 @@ const headers = {
 export default class PhotoPage extends Component {
   state = {
     photos: [],
-    locationname: this.props.match.params.locationname
+    locationname: this.props.match.params.locationname,
+    jwt: ""
   };
 
   getPhotos() {
     axios
       .get(`${baseurl}/locations/${this.state.locationname}/photos`, {
-        headers: headers
+        headers: {
+          Authorization: "Bearer " + this.state.jwt
+        }
       })
       .then(response => {
         console.log(response.data);
@@ -34,7 +37,9 @@ export default class PhotoPage extends Component {
   deletePhoto = id => {
     axios
       .delete(`${baseurl}/photos/${id}`, {
-        headers: headers
+        headers: {
+          Authorization: "Bearer " + this.state.jwt
+        }
       })
       .then(response => {
         console.log(response);
@@ -56,7 +61,9 @@ export default class PhotoPage extends Component {
       method: "post",
       const: baseurl,
       url: `${baseurl}/locations/${location}/photos`,
-      headers: headers,
+      headers: {
+        Authorization: "Bearer " + this.state.jwt
+      },
       data: fd
     })
       .then(response => {
@@ -72,6 +79,7 @@ export default class PhotoPage extends Component {
   };
 
   componentDidMount() {
+    this.state.jwt = localStorage.getItem("jwt");
     this.state.photos = this.getPhotos();
     //this.state.photos = services.getPhotos(this.state.locationname);
     console.log(this.state.photos);
