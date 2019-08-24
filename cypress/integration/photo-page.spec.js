@@ -45,36 +45,44 @@ describe("Photo page ", () => {
 
   //https://github.com/abramenal/cypress-file-upload
   //solution for cypress file uploads
-  it("should upload a photo", () => {
-    const fileName = "testPhoto.jpg";
 
+  it("should upload a new photo", () => {
+    const fileName = "testPhoto.jpg";
     cy.login();
     cy.clickPhotosTab();
-    cy.fixture(fileName).then(fileContent => {
-      cy.get("input[id=file-upload]").upload({
-        fileContent,
-        fileName,
-        mimeType: "image/jpeg"
+    cy.get(".card")
+      .its("length")
+      .then(numCards => {
+        cy.fixture(fileName).then(fileContent => {
+          cy.get("input[id=file-upload]").upload({
+            fileContent,
+            fileName,
+            mimeType: "image/jpeg"
+          });
+        });
+        cy.get("input[id=photo-name]").type("test");
+        cy.get("button[id=submit-button")
+          .click()
+          .wait(1000)
+          .get(".card")
+          .its("length")
+          .should("eq", numCards + 1);
       });
-    });
-    cy.get("input[id=photo-name]").type("test");
-    cy.get("button[id=submit-button")
-      .click()
-      .wait(1000)
-      .get(".card")
-      .last()
-      .should("contain", "test");
   });
 
-  it("should delete the last photo", () => {
+  it("should delete last item", () => {
     cy.login();
     cy.clickPhotosTab();
-    cy.get("button[id=delete-button")
-      .last()
-      .click()
-      .wait(1000)
-      .get(".card")
-      .last()
-      .should("not.contain", "test");
+    cy.get(".card")
+      .its("length")
+      .then(numCards => {
+        cy.get("button[id=delete-button")
+          .last()
+          .click()
+          .wait(1000)
+          .get(".card")
+          .its("length")
+          .should("eq", numCards - 1);
+      });
   });
 });

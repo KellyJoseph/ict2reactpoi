@@ -51,23 +51,42 @@ describe("Locations Page ", () => {
     cy.get("h1").should("contain", "Locations");
   });
 
-  it("should add new location", () => {
+  it("should add a new Location", () => {
     cy.login();
-    cy.addLocation();
-    cy.wait(1000)
-      .get(".card")
-      .last()
-      .should("contain", "nice place");
+    cy.get(".card")
+      .its("length")
+      .then(numCards => {
+        cy.get("input[id=name]")
+          .type("somewhere")
+          .get("input[id=description]")
+          .type("nice place")
+          .get("select")
+          .select("South")
+          .get("input[id=latitude]")
+          .type("12345")
+          .get("input[id=longitude]")
+          .type("12345")
+          .get("button[type=submit]")
+          .click()
+          .wait(1000)
+          .get(".card")
+          .its("length")
+          .should("eq", numCards + 1);
+      });
   });
 
   it("should delete last item", () => {
     cy.login();
-    cy.get("button[id=delete-button")
-      .last()
-      .click()
-      .wait(1000)
-      .get(".card")
-      .last()
-      .should("not.contain", "nice place");
+    cy.get(".card")
+      .its("length")
+      .then(numCards => {
+        cy.get("button[id=delete-button")
+          .last()
+          .click()
+          .wait(1000)
+          .get(".card")
+          .its("length")
+          .should("eq", numCards - 1);
+      });
   });
 });
