@@ -5,18 +5,17 @@ import Service from "../util/services";
 import _ from "lodash";
 import axios from "axios";
 import FilterControls from "./filterControls";
-const jwt = localStorage.getItem("jwt");
 const services = new Service();
+let jsonWebToken;
 
 const baseurl = "https://shrouded-brook-59989.herokuapp.com/api";
 const headers = {
-  Authorization: "Bearer " + jwt
+  Authorization: "Bearer " + jsonWebToken
 };
 
 export default class LocationPage extends Component {
   state = {
     locations: [],
-    jwt: "",
     region: "all"
   };
 
@@ -25,7 +24,7 @@ export default class LocationPage extends Component {
   };
 
   async componentDidMount() {
-    this.state.jwt = localStorage.getItem("jwt");
+    jsonWebToken = localStorage.getItem("jwt");
     //getLocations initially queried localStorage for JWT. getLocations was triggered
     //after the login response was returned but before finishing  writing the JWT to
     //localStorage this caused prolems for tests
@@ -36,7 +35,7 @@ export default class LocationPage extends Component {
     axios
       .get(`${baseurl}/locations`, {
         headers: {
-          Authorization: "Bearer " + this.state.jwt
+          Authorization: "Bearer " + jsonWebToken
         }
       })
       .then(response => {
@@ -61,7 +60,7 @@ export default class LocationPage extends Component {
       method: "post",
       url: "https://shrouded-brook-59989.herokuapp.com/api/locations",
       headers: {
-        Authorization: "Bearer " + this.state.jwt
+        Authorization: "Bearer " + jsonWebToken
       },
       data: body
     })
@@ -81,7 +80,7 @@ export default class LocationPage extends Component {
     axios
       .delete(`${baseurl}/locations/${id}`, {
         headers: {
-          Authorization: "Bearer " + this.state.jwt
+          Authorization: "Bearer " + jsonWebToken
         }
       })
       .then(response => {

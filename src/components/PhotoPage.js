@@ -3,26 +3,22 @@ import PhotoForm from "..//components/photoForm";
 import PhotoList from "../components/photoList";
 import axios from "axios";
 import Service from "../util/services";
-const jwt = localStorage.getItem("jwt");
 const services = new Service();
 
 const baseurl = "https://shrouded-brook-59989.herokuapp.com/api";
-const headers = {
-  Authorization: "Bearer " + jwt
-};
+let jsonWebToken;
 
 export default class PhotoPage extends Component {
   state = {
     photos: [],
-    locationname: this.props.match.params.locationname,
-    jwt: ""
+    locationname: this.props.match.params.locationname
   };
 
   getPhotos() {
     axios
       .get(`${baseurl}/locations/${this.state.locationname}/photos`, {
         headers: {
-          Authorization: "Bearer " + this.state.jwt
+          Authorization: "Bearer " + jsonWebToken
         }
       })
       .then(response => {
@@ -38,7 +34,7 @@ export default class PhotoPage extends Component {
     axios
       .delete(`${baseurl}/photos/${id}`, {
         headers: {
-          Authorization: "Bearer " + this.state.jwt
+          Authorization: "Bearer " + jsonWebToken
         }
       })
       .then(response => {
@@ -62,7 +58,7 @@ export default class PhotoPage extends Component {
       const: baseurl,
       url: `${baseurl}/locations/${location}/photos`,
       headers: {
-        Authorization: "Bearer " + this.state.jwt
+        Authorization: "Bearer " + jsonWebToken
       },
       data: fd
     })
@@ -79,7 +75,7 @@ export default class PhotoPage extends Component {
   };
 
   componentDidMount() {
-    this.state.jwt = localStorage.getItem("jwt");
+    jsonWebToken = localStorage.getItem("jwt");
     this.state.photos = this.getPhotos();
     //this.state.photos = services.getPhotos(this.state.locationname);
     console.log(this.state.photos);
