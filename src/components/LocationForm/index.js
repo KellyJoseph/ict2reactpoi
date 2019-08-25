@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
-const jwt = localStorage.getItem("jwt");
-const baseurl = "https://shrouded-brook-59989.herokuapp.com/api";
-const headers = {
-  Authorization: "Bearer " + jwt
-};
+
 export default class LocationForm extends Component {
   state = {
     name: "",
@@ -21,11 +16,8 @@ export default class LocationForm extends Component {
   handleLatitudeChange = e => this.setState({ latitude: e.target.value });
   handleLongitudeChange = e => this.setState({ longitude: e.target.value });
 
-  //handleRegionChange = e => this.setState({ gender: e.target.value )};
-
   handleSubmit = e => {
     e.preventDefault();
-    //this.props.handleAdd(this.state.name, this.state.description, this.state.region, this.state.latitude, this.state.longitude);
     this.props.addLocation(
       this.state.name,
       this.state.description,

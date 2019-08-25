@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-//import logo from "./logo.svg";
 import LocationList from "./components/locationList";
 import "./App.css";
 import api from "./datastore/stubAPI";

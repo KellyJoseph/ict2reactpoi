@@ -8,7 +8,6 @@ import LocationForm from "../components/LocationForm";
 import Photo from "../../src/components/photoItem";
 import PhotoList from "../../src/components/photoList";
 import PhotoForm from "../components/photoForm";
-import DataStore from "../../src/datastore/stubAPI";
 import { action } from "@storybook/addon-actions";
 import { linkTo } from "@storybook/addon-links";
 import { Button, Welcome } from "@storybook/react/demo";
@@ -46,22 +45,6 @@ const samplePhoto = {
 };
 
 const photos = [samplePhoto, samplePhoto, samplePhoto];
-
-storiesOf("Welcome", module).add("to Storybook", () => (
-  <Welcome showApp={linkTo("Button")} />
-));
-
-storiesOf("Button", module)
-  .add("with text", () => (
-    <Button onClick={action("clicked")}>Hello Button</Button>
-  ))
-  .add("with some emoji", () => (
-    <Button onClick={action("clicked")}>
-      <span role="img" aria-label="so cool">
-        😀 😎 👍 💯
-      </span>
-    </Button>
-  ));
 
 storiesOf("POI App/Header", module)
   .addDecorator(story => (

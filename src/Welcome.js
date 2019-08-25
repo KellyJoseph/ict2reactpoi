@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { withRouter, Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import map from "../src/images/old-map.jpg";
-import decode from "jwt-decode";
 const jwt = localStorage.getItem("jwt");
 if (jwt != null) {
   console.log(jwt);

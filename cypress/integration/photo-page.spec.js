@@ -70,7 +70,7 @@ describe("Photo page ", () => {
       });
   });
 
-  it("should delete last item", () => {
+  it("should delete last photo", () => {
     cy.login();
     cy.clickPhotosTab();
     cy.get(".card")

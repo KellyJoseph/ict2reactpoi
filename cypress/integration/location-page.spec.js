@@ -75,7 +75,7 @@ describe("Locations Page ", () => {
       });
   });
 
-  it("should delete last item", () => {
+  it("should delete last location", () => {
     cy.login();
     cy.get(".card")
       .its("length")

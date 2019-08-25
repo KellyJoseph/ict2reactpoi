@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
-const jwt = localStorage.getItem("jwt");
-const baseurl = "https://shrouded-brook-59989.herokuapp.com/api";
-const headers = {
-  Authorization: "Bearer " + jwt
-};
+
 export default class PhotoForm extends Component {
   state = {
     title: "",

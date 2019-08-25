@@ -1,12 +1,14 @@
 import decode from "jwt-decode";
 import axios from "axios";
 
+//this file was adapted from an online tutorial,
+//(can't find source)
+
 class Authentication {
   constructor() {
     this.baseurl = "https://shrouded-brook-59989.herokuapp.com/api"; // API server domain
     this.fetch = this.fetch.bind(this);
     this.login = this.login.bind(this);
-    this.getProfile = this.getProfile.bind(this);
     this.isAuthenticated = false;
     this.token = undefined;
     this.email = undefined;
@@ -52,7 +54,6 @@ class Authentication {
   }
 
   loggedIn() {
-    // Checks if there is a saved token and it's still valid
     const token = this.getToken(); // GEtting token from localstorage
     return !!token && !this.isTokenExpired(token); // handwaiving here
   }
@@ -70,38 +71,26 @@ class Authentication {
   }
 
   setToken(idToken) {
-    // Saves user token to localStorage
     localStorage.setItem("jwt", idToken);
   }
 
   getToken() {
-    // Retrieves the user token from localStorage
     return localStorage.getItem("jwt");
   }
 
   logout() {
-    // Clear user token and profile data from localStorage
     localStorage.removeItem("jwt");
-  }
-
-  getProfile() {
-    // Using jwt-decode npm package to decode the token
-    return decode(this.getToken());
+    this.isAuthenticated = false;
   }
 
   fetch(url, options) {
-    // performs api calls sending the required authentication headers
     const headers = {
       Accept: "application/json",
       "Content-Type": "application/json"
     };
-
-    // Setting Authorization header
-    // Authorization: Bearer xxxxxxx.xxxxxxxx.xxxxxx
     if (this.loggedIn()) {
       headers["Authorization"] = "Bearer " + this.getToken();
     }
-
     return fetch(url, {
       headers,
       ...options

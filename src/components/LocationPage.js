@@ -4,6 +4,7 @@ import LocationForm from "./LocationForm/";
 import Service from "../util/services";
 import _ from "lodash";
 import axios from "axios";
+import FilterControls from "./filterControls";
 const jwt = localStorage.getItem("jwt");
 const services = new Service();
 
@@ -15,7 +16,12 @@ const headers = {
 export default class LocationPage extends Component {
   state = {
     locations: [],
-    jwt: ""
+    jwt: "",
+    region: "all"
+  };
+
+  handleChange = value => {
+    this.setState({ region: value });
   };
 
   async componentDidMount() {
@@ -93,6 +99,24 @@ export default class LocationPage extends Component {
 
   render() {
     let locations = this.state.locations;
+    /*
+    let filteredLocations = locations.filter(location => {
+      const region = `${location.Region}`;
+      return (
+        region.toLowerCase().search(this.state.search.toLowerCase()) !== -1
+      );
+    });
+    filteredLocations =
+      this.state.region === "all"
+        ? filteredLocations
+        : filteredLocations.filter(
+            location => location.region === this.state.region
+          );
+    let sortedLocations = _.sortBy(
+      filteredLocations,
+      location => location.name
+    );
+    */
     console.log(this.state.locations, locations);
     return (
       <div className="jumbotron">
