@@ -31,8 +31,8 @@ Users can select any existing POI and then upload and delete photos for that loc
 
 > > Diagram of app structure
 
-Upon authentication, the jwt for the API is set in local storage and the user is redirected to the Locations page. ComponentDidMount makes a request for all locations from an API and these are displayed on the page. This request should return an array of Locations. This arrayis passed as props to the locationlist component. The locationlist component then maps each location to a locationitem component. The resulting map of locations is displayed to the user. The locationlist component also sends a deletelocation handler as props through locationlist to the locationitem component.
-If a user clicks the view photos tab, they will be re-routed to the photos page. This page takes in the location name as params and uses it to make a request to the API for all photos for that location. The returned array of photo objects is then passed as params to the photolist component and each of those photo objects in the list is mapped to a photoitem component and displayed for the user. The photopage also sends a deletPhoto handler as props through photolist to photoitem.
+Upon authentication, the jwt for the API is set in local storage and the user is redirected to the Locations page. ComponentDidMount makes a request for all locations from an API and these are displayed on the page. This request should return an array of Locations. This array is passed as props to the location list component. The location list component then maps each location to a location item component. The resulting map of locations is rendered on the location page. The location page also sends a deletelocation handler as props through location list to the location item component.  
+If a user clicks the view photos tab, they will be re-directed to the photos page. This page takes in the location name from the location object that the link was clicked it. This is passed as params and used to make a request to the API for all photos for that location. The returned array of photo objects is then passed as params to the photo list component and each of those photo objects in the array is mapped to a photo item component and rendered in the photo page. The photo page also sends a deletePhoto handler as props through photo list to photo item.
 If a user clicks the logout tab, they are redirected to the logout page and their jwt is cleared from local storage.
 
 ![][user]
@@ -49,13 +49,11 @@ If a user clicks the logout tab, they are redirected to the logout page and thei
 
 ## UI Design.
 
-their use (see examples below) . . . . . . .
-The UI design is mostly centered on the Navbar. Using the Navbar, the user can move between the welcome page, login page and locations page. The photos page is paramterized so dependent on which location's photos the user desires to see, thus is inaccessable from the router. The user must click on a link for one of the location cards to view the photos page.
+The UI design is mostly centered on the Navbar. Using the Navbar, the user can move between the welcome page, login page and locations page. The photos page is paramterized so dependent on which location's photos the user desires to see, thus is inaccessable from the router. The user must click on a link for one of the location cards to view the photos page. The design is quite minimal in terms of colours, icons etc. The focus was on making something clear, clean and easy to navigate.
 
 ![][main]
 
-> > Shows a card for each location returned from the API on login. New locations can be added and existing locations can be deleted by
-> > their author.
+> > Shows a card for each location returned from the API on login. New locations can be added and existing locations can be deleted by their author.
 
 ![][detail]
 
@@ -63,7 +61,7 @@ The UI design is mostly centered on the Navbar. Using the Navbar, the user can m
 
 ## Routing.
 
-- /locations (private)- displaysall of the locations that users have posted
+- /locations (private)- displays all of the locations that users have posted
 - /photos/:locationname (private) - paramterized route that displays all of the photos that users have posted for a given location
 - /login (public) - displays a form that allows users to authenticate their login credentials
 - /register (public) - displays a form that allows users to create a new account
