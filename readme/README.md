@@ -32,32 +32,33 @@ Users can select any existing POI and then upload and delete photos for that loc
 > > Diagram of app structure
 
 Upon authentication, the jwt for the API is set in local storage and the user is redirected to the Locations page. ComponentDidMount makes a request for all locations from an API and these are displayed on the page. This request should return an array of Locations. This array is passed as props to the location list component. The location list component then maps each location to a location item component. The resulting map of locations is rendered on the location page. The location page also sends a deletelocation handler as props through location list to the location item component.  
+  
+  
 If a user clicks the view photos tab, they will be re-directed to the photos page. This page takes in the location name from the location object that the link was clicked it. This is passed as params and used to make a request to the API for all photos for that location. The returned array of photo objects is then passed as params to the photo list component and each of those photo objects in the array is mapped to a photo item component and rendered in the photo page. The photo page also sends a deletePhoto handler as props through photo list to photo item.
 If a user clicks the logout tab, they are redirected to the logout page and their jwt is cleared from local storage.
 
-![][user]
+![][user]  
 
-> > Shows a user json object
+> > Shows a user json object  
 
-![][location]
+![][location]  
 
-> > Shows a location json object. Coordinates were intended to use for mapping purposes if time permitted.
+> > Shows a location json object. Coordinates were intended to use for mapping purposes if time permitted.  
 
-![][photo]
+![][photo]  
 
-> > Shows a photo json object
+> > Shows a photo json object  
 
 ## UI Design.
 
 The UI design is mostly centered on the Navbar. Using the Navbar, the user can move between the welcome page, login page and locations page. The photos page is paramterized so dependent on which location's photos the user desires to see, thus is inaccessable from the router. The user must click on a link for one of the location cards to view the photos page. The design is quite minimal in terms of colours, icons etc. The focus was on making something clear, clean and easy to navigate.
 
-![][main]
+![][main]  
 
-> > Shows a card for each location returned from the API on login. New locations can be added and existing locations can be deleted by their author.
+> > Shows a card for each location returned from the API on login. New locations can be added and existing locations can be deleted by their author.  
 
-![][detail]
-
-> > Shows a list of photos that users have posted for a location and a form for uploading new photos.
+![][detail]  
+> > Shows a list of photos that users have posted for a location and a form for uploading new photos.  
 
 ## Routing.
 
