@@ -91,10 +91,10 @@ All routes except signup and login are protected by JWT basic auth. User emails 
 - Cypress e2e test for automated photo/file upload.
 - Bootstrap styling, created from scratch, none resused from the labs.
 
-[model]: ./model.png
-[main]: ./main.png
-[detail]: ./detail.png
-[stories]: ./stories.png
-[user]: ./user.png
-[location]: ./location.png
-[photo]: ./photo.png
+[model]: ./readme/model.png
+[main]: ./readme/main.png
+[detail]: ./readme/detail.png
+[stories]: ./readme/stories.png
+[user]: ./readme/user.png
+[location]: ./readme/location.png
+[photo]: ./readme/photo.png
